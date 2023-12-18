@@ -1,5 +1,5 @@
-const App = () => {
-    return <div>我是app</div>;
-};
+import Router from './router';
+
+const App = () => <Router />;
 
 export default App;

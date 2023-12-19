@@ -1,14 +1,14 @@
-import BasicLayout from 'layout/BasicLayout';
+import Home from '../page/Home/index';
+import OpenBallpt from '../page/OpenBallot';
 
 const pathData = [
     {
-        element: <BasicLayout />,
-        children: [
-            {
-                index: true,
-                element: <div>我是route 首頁</div>,
-            },
-        ],
+        index: true,
+        element: <Home />,
+    },
+    {
+        path: 'openBallot',
+        element: <OpenBallpt />,
     },
 ];
 

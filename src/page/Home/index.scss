@@ -1,0 +1,14 @@
+.home {
+    height: 100%;
+    background-image: url(../../assets/images/home_bg_phoneSize.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+
+    &__container {
+        flex: 1;
+        min-height: 500px;
+    }
+}

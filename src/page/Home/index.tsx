@@ -1,5 +1,13 @@
+import './index.scss';
+import Footer from '../../component/Footer';
+
 const Home = () => {
-    return <div>home</div>;
+    return (
+        <div className="home">
+            <div className="home__container">456</div>
+            <Footer />
+        </div>
+    );
 };
 
 export default Home;

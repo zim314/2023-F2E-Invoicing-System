@@ -1,0 +1,18 @@
+.candidateCard {
+    flex-direction: column;
+    width: fit-content;
+
+    & > img {
+        display: block;
+    }
+
+    & :first-child {
+        width: 274px;
+        height: 262px;
+    }
+
+    & :last-child {
+        width: 77px;
+        height: 61px;
+    }
+}

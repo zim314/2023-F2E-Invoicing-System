@@ -6,9 +6,29 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
+    color: white;
+    font-family: Noto Sans TC;
 
     &__container {
         flex: 1;
         min-height: 500px;
+    }
+
+    &__LOGO {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        padding: 30px 0px 20px;
+
+        & > img {
+            position: relative;
+            right: 3px;
+        }
+
+        & > p {
+            margin-top: 3px;
+        }
     }
 }

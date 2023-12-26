@@ -1,7 +1,7 @@
 import './index.scss';
 import timeIcon from '../../assets/images/footer_timeIcon.svg';
 
-const footer = () => {
+const Footer = () => {
     return (
         <div className="footer alingCenter">
             <img className="footer__icon" src={timeIcon} alt="倒數圖示" />
@@ -12,4 +12,4 @@ const footer = () => {
     );
 };
 
-export default footer;
+export default Footer;

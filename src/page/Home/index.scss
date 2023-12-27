@@ -12,6 +12,9 @@
     &__container {
         flex: 1;
         min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
 
     &__LOGO {
@@ -20,7 +23,6 @@
         justify-content: center;
         align-items: center;
         font-size: 20px;
-        padding: 30px 0px 20px;
 
         & > img {
             position: relative;
@@ -29,6 +31,36 @@
 
         & > p {
             margin-top: 3px;
+        }
+    }
+
+    &__content {
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        & > div:nth-child(2) {
+            position: absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+    }
+
+    &__button {
+        color: white;
+        font-size: 16px;
+        padding: 4px 0px;
+        margin: 0px 8px 30px 8px;
+        border: 1px solid white;
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(254, 251, 243, 0.48) 0%, rgba(254, 251, 243, 0.00) 100%);
+        box-shadow: -3px 4px 4px 0px rgba(255, 255, 255, 0.40) inset, -4px 4px 6px 0px #0D2562;
+
+        & > img {
+            margin-right: 8px;
         }
     }
 }

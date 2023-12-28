@@ -1,17 +1,23 @@
 .candidateCard {
+    background-color: rgb(255,255,255,0);
+    border: none;
+    flex: 1;
     flex-direction: column;
-    width: fit-content;
+    overflow: hidden;
+    min-width: 100px;
 
+    & > div {
+        height: 262px;
+        overflow: hidden;
+ 
+        & img {
+            height: 100%;
+            position: relative;
+        }
+    } 
+    
     & > img {
         display: block;
-    }
-
-    & :first-child {
-        // width: 274px;
-        height: 262px;
-    }
-
-    & :last-child {
         width: 77px;
         height: 61px;
     }

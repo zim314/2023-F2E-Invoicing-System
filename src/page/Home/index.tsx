@@ -1,4 +1,5 @@
 import './index.scss';
+import useRWD from '../../hook/useRWD';
 import Footer from '../../component/Footer';
 import logo from '../../assets/images/logo.svg';
 import CandidateCard from '../../component/CandidateCard';
@@ -11,6 +12,8 @@ import guoYuNumber from '../../assets/images/guoYu_number.png';
 import taiwanIcon from '../../assets/images/button_taiwanIcon.svg';
 
 const Home = () => {
+    const device = useRWD();
+
     return (
         <div className="home">
             <div className="home__container">
@@ -19,23 +22,34 @@ const Home = () => {
                     <p>總統大選開票</p>
                 </div>
                 <div className="home__content">
-                    <CandidateCard
-                        condidatePicture={chuYuPicture}
-                        condidateNumber={chuYuNumber}
-                    />
-                    <CandidateCard
-                        condidatePicture={yingWenPicture}
-                        condidateNumber={yingWenNumber}
-                    />
-                    <CandidateCard
-                        condidatePicture={guoYuPicture}
-                        condidateNumber={guoYuNumber}
-                    />
+                    {device === 'mobile' && (
+                        <>
+                            <CandidateCard
+                                click={() => console.log('1')}
+                                condidatePicture={chuYuPicture}
+                                condidateNumber={chuYuNumber}
+                            />
+                            <CandidateCard
+                                click={() => console.log('2')}
+                                shiftRight={'30px'}
+                                condidatePicture={yingWenPicture}
+                                condidateNumber={yingWenNumber}
+                            />
+                            <CandidateCard
+                                click={() => console.log('3')}
+                                shiftRight={'10px'}
+                                condidatePicture={guoYuPicture}
+                                condidateNumber={guoYuNumber}
+                            />
+                        </>
+                    )}
                 </div>
-                <button className="alingCenter home__button">
-                    <img src={taiwanIcon} alt="icon" />
-                    <p>開票地圖 ➞</p>
-                </button>
+                {device === 'mobile' && (
+                    <button className="alingCenter home__button">
+                        <img src={taiwanIcon} alt="icon" />
+                        <p>開票地圖 ➞</p>
+                    </button>
+                )}
             </div>
             <Footer />
         </div>

@@ -1,0 +1,10 @@
+.displayFrame {
+    height: 500px;
+    border: none;
+    background-color: rgb(255,255,255,0);
+    position: relative;
+
+    & > img {
+        height: 100%;
+    }
+}

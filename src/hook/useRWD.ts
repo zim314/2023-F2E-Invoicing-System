@@ -4,8 +4,8 @@ const useRWD = () => {
     const [mobile, setMobile] = useState('mobile');
 
     const handleRWD = () => {
-        if (window.innerWidth > 1024) setMobile('PC');
-        else if (window.innerWidth > 768) setMobile('tablet');
+        if (window.innerWidth >= 1024) setMobile('PC');
+        else if (window.innerWidth >= 768) setMobile('tablet');
         else setMobile('mobile');
     };
 

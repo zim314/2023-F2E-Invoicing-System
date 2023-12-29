@@ -38,6 +38,9 @@
         overflow: hidden;
         display: flex;
         justify-content: space-between;
+        @media screen and (min-width: 1024px) {
+            justify-content: center;
+        }
     }
 
     &__button {
@@ -49,9 +52,23 @@
         border-radius: 8px;
         background: linear-gradient(180deg, rgba(254, 251, 243, 0.48) 0%, rgba(254, 251, 243, 0.00) 100%);
         box-shadow: -3px 4px 4px 0px rgba(255, 255, 255, 0.40) inset, -4px 4px 6px 0px #0D2562;
+        @media screen and (min-width: 1024px) {
+            width: fit-content;
+            margin: 0px;
+            padding: 0px;
+            background: none;
+            border: none;
+            box-shadow: none;
+            position: relative;
+            right: 70px;
+        }
 
         & > img {
             margin-right: 8px;
+            @media screen and (min-width: 1024px) {
+                height: 500px;
+                margin-right: 0px;
+            }
         }
     }
 }

@@ -10,6 +10,11 @@ import yingWenNumber from '../../assets/images/yingWen_number.png';
 import guoYuPicture from '../../assets/images/guoYu_fullBody.png';
 import guoYuNumber from '../../assets/images/guoYu_number.png';
 import taiwanIcon from '../../assets/images/button_taiwanIcon.svg';
+import DisplayFrame from 'component/DisplayFrame';
+import chuYuFrame from '../../assets/images/chuYu_frame.png';
+import yingWenFrame from '../../assets/images/yingWen_frame.png';
+import guoYuFrame from '../../assets/images/guoYu_frame.png';
+import PCButton from '../../assets/images/button_home_PC.png';
 
 const Home = () => {
     const device = useRWD();
@@ -22,7 +27,7 @@ const Home = () => {
                     <p>總統大選開票</p>
                 </div>
                 <div className="home__content">
-                    {device === 'mobile' && (
+                    {(device === 'mobile' || device === 'tablet') && (
                         <>
                             <CandidateCard
                                 click={() => console.log('1')}
@@ -43,8 +48,32 @@ const Home = () => {
                             />
                         </>
                     )}
+                    {device === 'PC' && (
+                        <>
+                            <DisplayFrame
+                                click={() => console.log('1')}
+                                shiftLeft={'78px'}
+                                condidatePicture={chuYuFrame}
+                            />
+                            <DisplayFrame
+                                click={() => console.log('2')}
+                                condidatePicture={yingWenFrame}
+                            />
+                            <DisplayFrame
+                                click={() => console.log('3')}
+                                shiftRight={'84px'}
+                                condidatePicture={guoYuFrame}
+                            />
+                            <button
+                                className="alingCenter home__button"
+                                onClick={() => console.log('4')}
+                            >
+                                <img src={PCButton} alt="" />
+                            </button>
+                        </>
+                    )}
                 </div>
-                {device === 'mobile' && (
+                {(device === 'mobile' || device === 'tablet') && (
                     <button className="alingCenter home__button">
                         <img src={taiwanIcon} alt="icon" />
                         <p>開票地圖 ➞</p>

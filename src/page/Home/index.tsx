@@ -24,7 +24,9 @@ const Home = () => {
             <div className="home__container">
                 <div className="home__LOGO">
                     <img src={logo} alt="LOGO" />
-                    <p>總統大選開票</p>
+                    {(device === 'mobile' || device === 'tablet') && (
+                        <p>總統大選開票</p>
+                    )}
                 </div>
                 <div className="home__content">
                     {(device === 'mobile' || device === 'tablet') && (

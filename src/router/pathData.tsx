@@ -1,5 +1,6 @@
 import Home from '../page/Home/index';
 import OpenBallpt from '../page/OpenBallot';
+import CandidateInfo from '../page/CandidateInfo';
 
 const pathData = [
     {
@@ -7,8 +8,12 @@ const pathData = [
         element: <Home />,
     },
     {
-        path: 'openBallot',
+        path: 'openballot',
         element: <OpenBallpt />,
+    },
+    {
+        path: 'candidateInfo/:candidate',
+        element: <CandidateInfo />,
     },
 ];
 

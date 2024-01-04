@@ -1,6 +1,5 @@
 import './index.scss';
 import { useParams } from 'react-router-dom';
-import Navbar from '../../component/Navber';
 
 const CandidateInfo = () => {
     const { candidate } = useParams();
@@ -8,8 +7,7 @@ const CandidateInfo = () => {
     console.log('candidate', candidate);
 
     return (
-        <div>
-            <Navbar />
+        <div className="candidateInfo">
             <div>照片</div>
             <div>1.喵楚魚</div>
             <div>政黨</div>

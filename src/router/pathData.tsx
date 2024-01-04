@@ -1,19 +1,29 @@
 import Home from '../page/Home/index';
 import OpenBallpt from '../page/OpenBallot';
 import CandidateInfo from '../page/CandidateInfo';
+import BasicLayout from 'layout/BasicLayout';
 
 const pathData = [
     {
-        index: true,
+        path: '/',
         element: <Home />,
     },
     {
-        path: 'openballot',
-        element: <OpenBallpt />,
+        element: <BasicLayout />,
+        children: [
+            {
+                path: 'openballpt',
+                element: <OpenBallpt />,
+            },
+            {
+                path: 'candidateinfo/:candidate',
+                element: <CandidateInfo />,
+            },
+        ],
     },
     {
-        path: 'candidateInfo/:candidate',
-        element: <CandidateInfo />,
+        path: '*',
+        element: <div>404</div>,
     },
 ];
 

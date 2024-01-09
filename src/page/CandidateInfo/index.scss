@@ -1,3 +1,92 @@
 .candidateInfo {
     padding: 10px 16px 40px;
-}
+    font-size: 16px;
+    color: #0D2562;
+
+    & > h3 {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    & > h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    & > h5 {
+        margin-bottom: 20px;
+    }
+
+    & > h6 {
+        font-size: 12px;
+        margin-bottom: 19px;
+    }
+
+    & li {
+        list-style: none;
+        &::before {
+            content: '•';
+            font-size: 10px;
+            text-align: center;
+            line-height: 26px;
+            position: relative;
+            bottom: 3px;
+            margin: 0px 9px;
+        }
+    }
+
+    &__photo {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    &__number {
+        height: 28px;
+        width: 28px;
+        background-color: #0D2562;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 28px;
+        text-align: center;   
+        border-radius: 999px;
+        display: inline-block;
+        margin-right: 16px;
+        font-family: SF Pro Text;
+    }
+
+    &__content {
+        margin-bottom: 20px;
+        color: black;
+        & > li {
+            line-height: 26px;
+        }
+    }
+
+    &__icon {
+        margin-right: 10px;
+    }
+
+    &__partisan {
+        line-height: 28px;
+    }
+
+    &__footer {
+        display: flex;
+        & > a + a {
+            margin-left: 30px;
+        }
+    }
+
+    &__card {
+       text-align: center;
+       font-weight: 500;
+       color: black;
+        & > img {
+            height: 72px;
+            width: 72px;
+            margin-bottom: 8px;
+        }
+    }
+} 

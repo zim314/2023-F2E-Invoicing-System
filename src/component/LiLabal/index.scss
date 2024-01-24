@@ -1,0 +1,11 @@
+.liLabal {
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+
+    &__point {
+        font-size: 10px;
+        padding: 0px 10px;
+        text-align: center;
+    }
+}

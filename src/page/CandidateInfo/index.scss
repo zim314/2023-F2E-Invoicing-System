@@ -10,12 +10,13 @@
     }
 
     @media screen and (min-width: 1024px) {
-        height: calc(100% - 95px);
+        height: calc(100% - 89px);
     }
 
     & > div {
         height: 100%;
-        overflow: scroll;
+        min-height: 521px;
+        overflow: hidden;
         @media screen and (min-width: 768px) {
             display: flex;
             justify-content: center;
@@ -164,14 +165,5 @@
                 width: 82px;
             }
         }
-    }
-
-    &__footer {
-        color: white;
-        font-size: 14px;
-        text-align: center;
-        background-color: #0D2562;
-        height: 35px;
-        line-height: 35px;
     }
 } 

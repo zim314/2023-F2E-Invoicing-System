@@ -1,15 +1,9 @@
 import './index.scss';
-import timeIcon from '../../assets/images/footer_timeIcon.svg';
 
-const Footer = () => {
-    return (
-        <div className="footer alingCenter">
-            <img className="footer__icon" src={timeIcon} alt="倒數圖示" />
-            <div>2024開票日倒數</div>
-            <div className="footer__countdown">87</div>
-            <div>天</div>
-        </div>
-    );
-};
+const Footer = () => (
+    <div className="footer">
+        Copyright©2023 總統即時開票全台地圖本網站 The F2E所有
+    </div>
+);
 
 export default Footer;

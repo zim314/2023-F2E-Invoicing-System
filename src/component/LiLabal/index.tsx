@@ -5,13 +5,11 @@ interface Props {
     children: string;
 }
 
-const LiLabal = ({ className = '', children }: Props) => {
-    return (
-        <li className={`liLabal ${className}`}>
-            <div className="liLabal__point">•</div>
-            {children}
-        </li>
-    );
-};
+const LiLabal = ({ className = '', children }: Props) => (
+    <li className={`liLabal ${className}`}>
+        <div className="liLabal__point">•</div>
+        {children}
+    </li>
+);
 
 export default LiLabal;

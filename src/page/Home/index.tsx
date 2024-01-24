@@ -1,6 +1,6 @@
 import './index.scss';
 import useRWD from '../../hook/useRWD';
-import Footer from '../../component/Footer';
+import Timer from '../../component/Timer';
 import logo from '../../assets/images/logo.svg';
 import CandidateCard from '../../component/CandidateCard';
 import chuYuPicture from '../../assets/images/chuYu_fullBody.png';
@@ -15,9 +15,11 @@ import chuYuFrame from '../../assets/images/chuYu_frame.png';
 import yingWenFrame from '../../assets/images/yingWen_frame.png';
 import guoYuFrame from '../../assets/images/guoYu_frame.png';
 import PCButton from '../../assets/images/button_home_PC.png';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const device = useRWD();
+    const navigate = useNavigate();
 
     return (
         <div className="home">
@@ -32,18 +34,18 @@ const Home = () => {
                     {(device === 'mobile' || device === 'tablet') && (
                         <>
                             <CandidateCard
-                                click={() => console.log('1')}
+                                click={() => navigate('candidateinfo/chuYu')}
                                 condidatePicture={chuYuPicture}
                                 condidateNumber={chuYuNumber}
                             />
                             <CandidateCard
-                                click={() => console.log('2')}
+                                click={() => navigate('candidateinfo/yingWen')}
                                 shiftRight={'30px'}
                                 condidatePicture={yingWenPicture}
                                 condidateNumber={yingWenNumber}
                             />
                             <CandidateCard
-                                click={() => console.log('3')}
+                                click={() => navigate('candidateinfo/guoYu')}
                                 shiftRight={'10px'}
                                 condidatePicture={guoYuPicture}
                                 condidateNumber={guoYuNumber}
@@ -53,22 +55,22 @@ const Home = () => {
                     {device === 'PC' && (
                         <>
                             <DisplayFrame
-                                click={() => console.log('1')}
+                                click={() => navigate('candidateinfo/chuYu')}
                                 shiftLeft={'78px'}
                                 condidatePicture={chuYuFrame}
                             />
                             <DisplayFrame
-                                click={() => console.log('2')}
+                                click={() => navigate('candidateinfo/yingWen')}
                                 condidatePicture={yingWenFrame}
                             />
                             <DisplayFrame
-                                click={() => console.log('3')}
+                                click={() => navigate('candidateinfo/guoYu')}
                                 shiftRight={'84px'}
                                 condidatePicture={guoYuFrame}
                             />
                             <button
                                 className="alingCenter home__button"
-                                onClick={() => console.log('4')}
+                                onClick={() => navigate('openballpt')}
                             >
                                 <img src={PCButton} alt="" />
                             </button>
@@ -76,13 +78,16 @@ const Home = () => {
                     )}
                 </div>
                 {(device === 'mobile' || device === 'tablet') && (
-                    <button className="alingCenter home__button">
+                    <button
+                        onClick={() => navigate('openballpt')}
+                        className="alingCenter home__button"
+                    >
                         <img src={taiwanIcon} alt="icon" />
                         <p>開票地圖 ➞</p>
                     </button>
                 )}
             </div>
-            <Footer />
+            <Timer />
         </div>
     );
 };

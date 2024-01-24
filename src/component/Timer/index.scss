@@ -1,0 +1,26 @@
+.timer {
+    height: 52px;
+    background: linear-gradient(90deg, #FFF5DA 0.01%, #FEFBF3 45.83%, #FFF5D9 99.98%);
+    font-size: 18px;
+    font-weight: 700;
+    color: #0D2562;
+    & > * {
+        margin-right: 6px;
+    }
+
+    &__icon {
+        height: 27px;
+        width: 26px;
+    }
+
+    &__countdown {
+        background-color: #0D2562;
+        height: 28px;
+        width: 36px;
+        font-size: 22px;
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 28px;
+    }
+}

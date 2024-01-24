@@ -12,12 +12,12 @@ const pathData = [
         element: <BasicLayout />,
         children: [
             {
-                path: 'openballpt',
-                element: <OpenBallpt />,
-            },
-            {
                 path: 'candidateinfo/:candidate',
                 element: <CandidateInfo />,
+            },
+            {
+                path: 'openballpt',
+                element: <OpenBallpt />,
             },
         ],
     },

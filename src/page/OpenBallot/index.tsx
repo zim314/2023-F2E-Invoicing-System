@@ -1,7 +1,13 @@
-import React from 'react';
+import './index.scss';
+import countryMap from '../../assets/map/countryMap.json';
+import DisplayMap from '../../component/DisplayMap';
 
 const OpenBallpt = () => {
-    return <div>開票頁面</div>;
+    return (
+        <div>
+            <DisplayMap geojson={countryMap} />
+        </div>
+    );
 };
 
 export default OpenBallpt;

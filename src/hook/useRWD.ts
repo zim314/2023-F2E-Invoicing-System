@@ -10,8 +10,8 @@ const useRWD = () => {
     };
 
     useEffect(() => {
-        window.addEventListener('resize', handleRWD);
         handleRWD();
+        window.addEventListener('resize', handleRWD);
         return () => {
             window.removeEventListener('resize', handleRWD);
         };

@@ -1,18 +1,25 @@
 import { useEffect, useRef } from 'react';
-import { select, geoMercator, geoPath } from 'd3';
+import { select, geoMercator, geoPath, GeoPath } from 'd3';
 
 interface Props {
     geojson: any;
+    svgSize: Size;
 }
 
-const index = ({ geojson }: Props) => {
+interface Size {
+    width: number;
+    height: number;
+}
+
+const index = ({ geojson, svgSize }: Props) => {
+    const { width, height } = svgSize;
     const mapRef = useRef(null);
 
     useEffect(() => {
         const map = select(mapRef.current);
         map.selectAll('*').remove();
-        const pathGenerator = geoPath().projection(
-            geoMercator().fitSize([500, 400], geojson)
+        const pathGenerator: GeoPath<any, any> = geoPath().projection(
+            geoMercator().fitSize([width, height], geojson)
         );
 
         map.selectAll('path')
@@ -20,11 +27,12 @@ const index = ({ geojson }: Props) => {
             .enter()
             .append('path')
             .attr('d', pathGenerator)
+            .attr('id', (_, i) => geojson.features[i].properties.COUNTYNAME)
             .style('fill', 'steelblue')
             .style('stroke', 'white');
-    }, [geojson]);
+    }, [geojson, width, height]);
 
-    return <svg ref={mapRef} width="500" height="400"></svg>;
+    return <svg ref={mapRef} width={width} height={height} />;
 };
 
 export default index;

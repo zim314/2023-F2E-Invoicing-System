@@ -1,7 +1,16 @@
 .openBallpt {
     
-    &__wrapper {
-        background-color: rgb(255, 190, 190);
+    &__mapContainer {
+        background-color: red;
+        padding: 13px 0px;
         height: 100%;
+        min-height: 442px;
     }
+}
+
+.xxx {
+    width: 100%;
+    height: 400px;
+    background-color: #0D2562;
+    padding: 30px ;
 }

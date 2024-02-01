@@ -1,0 +1,44 @@
+%size {
+    width: 100%;
+    height: 40px;
+}
+
+%form {
+    padding: 10px 13px;
+}
+
+.select {
+    @extend %size;
+    position: absolute;
+    height: fit-content;
+
+    &__container {
+        @extend %size;
+        position: relative;
+        border: 1px solid black;
+    }
+
+    & button {
+        @extend %size;
+        @extend %form;
+        border: none;
+        background-color: #fff4d9;
+        text-align: start;
+        &:last-child {
+            border-radius: 0px 0px 6px 6px;
+        }
+        &:hover {
+            background-color: white;
+        }
+    }
+
+    &__value {
+        display: flex;
+        justify-content: space-between;
+
+        & > p {
+            display: block;
+        }
+    }
+}
+

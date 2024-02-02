@@ -11,11 +11,13 @@
     @extend %size;
     position: absolute;
     height: fit-content;
+    border: 1px solid black;
+    border-radius: 6px;
 
     &__container {
         @extend %size;
         position: relative;
-        border: 1px solid black;
+        border-radius: 6px;
     }
 
     & button {

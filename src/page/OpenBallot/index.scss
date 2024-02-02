@@ -1,16 +1,54 @@
+%controlPanelSize {
+    width: 100%;
+    height: 209px;
+    border-radius: 6px 6px 0px 0px;
+}
+
 .openBallpt {
-    
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
     &__mapContainer {
-        background-color: red;
         padding: 13px 0px;
-        height: 100%;
+        // height: 100%;
+        flex: 1;
         min-height: 442px;
+    }   
+
+    &__controlPanelContainer {
+        @extend %controlPanelSize;
+        position: relative;
     }
 }
 
-.xxx {
-    width: 100%;
-    height: 400px;
+.controlPanel {
+    @extend %controlPanelSize;
+    position: absolute;
     background-color: #0D2562;
-    padding: 30px ;
+
+    &__expandButton {
+        width: 52px;
+        height: 18px;
+        text-align: center;
+        line-height: 18px;
+        border: 1px solid black;
+        border-radius: 12px 12px 0px 0px;
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: rgb(255,255,255,0.3);
+    }
+
+    &__selectBar {
+        display: flex;
+        padding: 14px;
+        border-radius: 6px 6px 0px 0px;
+        background-color: #0D2562;
+
+        & > div:last-child {
+           margin-left: 14px;
+        }
+    }
 }

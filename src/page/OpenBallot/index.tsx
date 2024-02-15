@@ -5,6 +5,8 @@ import { useRef, useState, useEffect } from 'react';
 import Select from '../../component/Select';
 import { counryData, distData } from '../../component/Select/optionData';
 
+import * as d3 from 'd3';
+
 const OpenBallpt = () => {
     const [counry, setCounry] = useState('選擇縣市');
     const [dist, setDist] = useState('選擇區域');
@@ -16,7 +18,7 @@ const OpenBallpt = () => {
         const updateSvgSize = () => {
             const { width, height } =
                 mapContainerRef.current.getBoundingClientRect();
-            //上下留白各13px 13+13=26
+            //地圖上下留白各13px 13+13=26
             setSvgSize({ width, height: height - 26 });
         };
         updateSvgSize();
@@ -43,6 +45,30 @@ const OpenBallpt = () => {
                             selectValue={dist}
                             updateSelect={setDist}
                         />
+                    </div>
+
+                    <div className="barGraph">
+                        <div className="barGraph__title">縣市 得票佔比</div>
+                        <div className="barGraph__row">
+                            <div>台北</div>
+                            <div>///////------------</div>
+                        </div>
+                        <div>新北</div>
+                        <div>////////-----------</div>
+                        <div>高雄</div>
+                        <div>///////////--------</div>
+                        <div>台北</div>
+                        <div>///////------------</div>
+                        <div>新北</div>
+                        <div>////////-----------</div>
+                        <div>高雄</div>
+                        <div>///////////--------</div>
+                        <div>台北</div>
+                        <div>///////------------</div>
+                        <div>新北</div>
+                        <div>////////-----------</div>
+                        <div>高雄</div>
+                        <div>///////////--------</div>
                     </div>
                 </div>
             </div>

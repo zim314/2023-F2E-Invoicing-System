@@ -11,7 +11,6 @@
 
     &__mapContainer {
         padding: 13px 0px;
-        // height: 100%;
         flex: 1;
         min-height: 442px;
     }   
@@ -25,15 +24,15 @@
 .controlPanel {
     @extend %controlPanelSize;
     position: absolute;
-    background-color: #0D2562;
 
     &__expandButton {
         width: 52px;
         height: 18px;
         text-align: center;
         line-height: 18px;
-        border: 1px solid black;
+        border: none;
         border-radius: 12px 12px 0px 0px;
+        box-shadow: 0 0 4px 1px rgb(87, 87, 87); 
         position: absolute;
         top: -18px;
         left: 50%;
@@ -50,5 +49,17 @@
         & > div:last-child {
            margin-left: 14px;
         }
+    }
+}
+
+.barGraph {
+    background-color: #0D2562;
+    overflow: scroll;
+    color: white;
+    padding: 0px 20px;
+
+    &__row {
+        display: flex;
+        
     }
 }

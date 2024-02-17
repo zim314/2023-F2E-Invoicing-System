@@ -4,22 +4,53 @@ import DisplayMap from '../../component/DisplayMap';
 import { useRef, useState, useEffect } from 'react';
 import Select from '../../component/Select';
 import { counryData, distData } from '../../component/Select/optionData';
-
 import * as d3 from 'd3';
+import RatioBar from '../../component/RatioBar';
+
+interface Votes {
+    county: string;
+    yingWen: number;
+    guoYu: number;
+    chuYu: number;
+}
 
 const OpenBallpt = () => {
-    const [counry, setCounry] = useState('選擇縣市');
-    const [dist, setDist] = useState('選擇區域');
-    const [svgSize, setSvgSize] = useState({ width: 0, height: 0 });
+    const [county, setCounty] = useState('選擇縣市');
+    const [district, setDistrict] = useState('選擇區域');
+    const [mapSvgSize, setMapSvgSize] = useState({ width: 0, height: 0 });
+    const [barSvgSize, setBarSvgSize] = useState({ width: 0, height: 0 });
+    const [votesList, setVotesList] = useState<Votes[]>();
 
     const mapContainerRef = useRef<HTMLDivElement>(null!);
+    const barGraphContainerRef = useRef<HTMLDivElement>(null!);
 
     useEffect(() => {
+        (async () => {
+            const votes = await d3
+                .csv('../../../public/votesData.csv')
+                .then((result) =>
+                    result.map((votes) => {
+                        return {
+                            county: votes.county,
+                            yingWen: parseInt(votes.yingWen.replace(/,/g, '')),
+                            guoYu: parseInt(votes.guoYu.replace(/,/g, '')),
+                            chuYu: parseInt(votes.chuYu.replace(/,/g, '')),
+                        };
+                    })
+                );
+            setVotesList(votes);
+        })();
+
         const updateSvgSize = () => {
-            const { width, height } =
+            const { width: mapWidth, height: mapHeight } =
                 mapContainerRef.current.getBoundingClientRect();
+            const { width: barWidth } =
+                barGraphContainerRef.current.getBoundingClientRect();
+
             //地圖上下留白各13px 13+13=26
-            setSvgSize({ width, height: height - 26 });
+            setMapSvgSize({ width: mapWidth, height: mapHeight - 26 });
+            //bar要扣掉pidding跟county的width 20+20+18=58
+            setBarSvgSize({ width: barWidth - 108, height: 18 });
         };
         updateSvgSize();
         window.addEventListener('resize', updateSvgSize);
@@ -29,7 +60,7 @@ const OpenBallpt = () => {
     return (
         <div className="openBallpt">
             <div className="openBallpt__mapContainer" ref={mapContainerRef}>
-                <DisplayMap geojson={countryMap} svgSize={svgSize} />
+                <DisplayMap geojson={countryMap} svgSize={mapSvgSize} />
             </div>
             <div className="openBallpt__controlPanelContainer">
                 <div className="controlPanel">
@@ -37,38 +68,30 @@ const OpenBallpt = () => {
                     <div className="controlPanel__selectBar">
                         <Select
                             optionData={counryData}
-                            selectValue={counry}
-                            updateSelect={setCounry}
+                            selectValue={county}
+                            updateSelect={setCounty}
                         />
                         <Select
                             optionData={distData}
-                            selectValue={dist}
-                            updateSelect={setDist}
+                            selectValue={district}
+                            updateSelect={setDistrict}
                         />
                     </div>
-
-                    <div className="barGraph">
+                    <div className="barGraph" ref={barGraphContainerRef}>
                         <div className="barGraph__title">縣市 得票佔比</div>
-                        <div className="barGraph__row">
-                            <div>台北</div>
-                            <div>///////------------</div>
-                        </div>
-                        <div>新北</div>
-                        <div>////////-----------</div>
-                        <div>高雄</div>
-                        <div>///////////--------</div>
-                        <div>台北</div>
-                        <div>///////------------</div>
-                        <div>新北</div>
-                        <div>////////-----------</div>
-                        <div>高雄</div>
-                        <div>///////////--------</div>
-                        <div>台北</div>
-                        <div>///////------------</div>
-                        <div>新北</div>
-                        <div>////////-----------</div>
-                        <div>高雄</div>
-                        <div>///////////--------</div>
+                        {votesList?.map((votes: Votes) => (
+                            <div className="barGraph__row" key={votes.county}>
+                                <div className="barGraph__county">
+                                    {votes.county}
+                                </div>
+                                <RatioBar
+                                    barSize={barSvgSize}
+                                    greenParty={votes.yingWen}
+                                    blueParty={votes.guoYu}
+                                    orangeParty={votes.chuYu}
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

@@ -59,7 +59,12 @@
     padding: 0px 20px;
 
     &__row {
+        width: 100%;
         display: flex;
-        
+        padding: 13px 0px; 
+    }
+
+    &__county {
+        width: 66px;
     }
 }

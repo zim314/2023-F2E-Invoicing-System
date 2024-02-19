@@ -3,9 +3,9 @@ import * as d3 from 'd3';
 
 interface Props {
     barSize: Size;
-    greenParty: number;
-    blueParty: number;
-    orangeParty: number;
+    greenPartisan: number;
+    bluePartisan: number;
+    orangePartisan: number;
 }
 
 interface Size {
@@ -13,16 +13,21 @@ interface Size {
     height: number;
 }
 
-const RatioBar = ({ barSize, greenParty, blueParty, orangeParty }: Props) => {
+const RatioBar = ({
+    barSize,
+    greenPartisan,
+    bluePartisan,
+    orangePartisan,
+}: Props) => {
     const data = [
-        { votes: greenParty, color: '#749c73' },
-        { votes: blueParty, color: '#8bb5dc' },
-        { votes: orangeParty, color: '#ffb086' },
+        { votes: greenPartisan, color: '#749c73' },
+        { votes: bluePartisan, color: '#8bb5dc' },
+        { votes: orangePartisan, color: '#ffb086' },
     ];
 
     useEffect(() => {
         let cumulativeValue = 0;
-        const svg = d3.select(`.ratioBar${greenParty}`).append('g');
+        const svg = d3.select(`.ratioBar${greenPartisan}`).append('g');
         const x = d3
             .scaleLinear()
             .domain([0, d3.sum(data, (data) => data.votes)])
@@ -50,7 +55,7 @@ const RatioBar = ({ barSize, greenParty, blueParty, orangeParty }: Props) => {
                 width: `${barSize.width}px`,
                 height: `${barSize.height}px`,
             }}
-            className={`ratioBar${greenParty}`}
+            className={`ratioBar${greenPartisan}`}
         />
     );
 };

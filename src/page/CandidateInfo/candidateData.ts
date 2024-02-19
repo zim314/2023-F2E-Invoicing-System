@@ -4,7 +4,6 @@ import guoYu_fullBody from '../../assets/images/guoYu_fullBody.png';
 import blueIcon from '../../assets/images/blueIcon.png';
 import greenIcon from '../../assets/images/greenIcon.png';
 import orangeIcon from '../../assets/images/orangeIcon.png';
-
 import chuYu_headShot from '../../assets/images/chuYu_headShot.png';
 import yingWen_headShot from '../../assets/images/yingWen_headShot.png';
 import guoYu_headShot from '../../assets/images/guoYu_headShot.png';
@@ -17,6 +16,7 @@ const candidateData = [
         fullBodyPhoto: chuYu_fullBody,
         headShot: chuYu_headShot,
         partisan: '橘喵黨',
+        partisanColor: '#ffb086',
         partisanIcon: orangeIcon,
         partner: '魚喵喵(無黨籍)',
         background: '政治界：公職、國際關西研究員',
@@ -48,6 +48,7 @@ const candidateData = [
         fullBodyPhoto: yingWen_fullBody,
         headShot: yingWen_headShot,
         partisan: '綠喵黨',
+        partisanColor: '#749c73',
         partner: '喵清得 (綠喵黨)',
         partisanIcon: greenIcon,
         background: '政治界：大學教授、國際談判代表',
@@ -78,6 +79,7 @@ const candidateData = [
         fullBodyPhoto: guoYu_fullBody,
         headShot: guoYu_headShot,
         partisan: '藍汪黨',
+        partisanColor: '#8bb5dc',
         partner: '喵善政 (無黨籍)',
         partisanIcon: blueIcon,
         background: '政治界：民意代表',

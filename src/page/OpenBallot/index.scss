@@ -52,11 +52,63 @@
     }
 }
 
+.voteShare {
+    display: flex;
+    color: white;
+    line-height: 36px;
+    font-weight: 500;
+    padding: 0px 20px 15px 20px;
+
+    &__container {
+        background-color: #0D2562;
+    }
+
+    & > img {
+        width: 36px;
+        border: 1px solid white;
+        border-radius: 99px;
+        margin-right: 17px;
+    }
+
+    & > p {
+        display: block;
+    }
+
+    & p:first-of-type {
+        width: 60px;
+    }
+
+    & p:nth-of-type(2) {
+       flex: 1;
+       overflow: hidden;
+       text-align: center;
+    }
+
+    & p:last-of-type {
+        width: 60px;
+        text-align: right;
+        font-family: "SF Pro Text";
+    }
+}
+
 .barGraph {
     background-color: #0D2562;
     overflow: scroll;
     color: white;
     padding: 0px 20px;
+
+    &__title {
+        display: flex;
+        font-size: 14px;
+        color: #ACACAC;
+     
+        & > p {
+            display: block;
+            &:first-child {
+                width: 66px;
+            }
+        }
+    }
 
     &__row {
         width: 100%;

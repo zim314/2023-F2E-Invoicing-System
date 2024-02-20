@@ -1,16 +1,21 @@
 import './index.scss';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import useOnClickOutSide from 'hook/useOnClickOutside';
 
 const Select = ({ optionData, selectValue, updateSelect }: any) => {
     const [openOption, setOpenOption] = useState(false);
 
-    const handleChangeSelect = (e: any) => {
+    const selectRef = useRef(null);
+
+    const handleChangeSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
         setOpenOption(false);
-        updateSelect(e.target.value);
+        updateSelect(e.currentTarget.value);
     };
 
+    useOnClickOutSide(selectRef, () => setOpenOption(false));
+
     return (
-        <div className="select__container">
+        <div className="select__container" ref={selectRef}>
             <div style={{ zIndex: openOption ? '1' : '0' }} className="select">
                 <button
                     style={{

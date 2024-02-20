@@ -3,8 +3,7 @@
         background-color: white;
         height: 0px;
         min-height:  calc(100% - 60px);
-        @media screen and (min-width: 768px) {
-           
+        @media screen and (min-width: 1024px) {
             min-height:  calc(100% - 89px);
         }
     }

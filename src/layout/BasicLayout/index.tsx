@@ -15,7 +15,7 @@ const BasicLayout = () => {
             <div className="basicLayout__container">
                 <Outlet />
             </div>
-            {device !== 'mobile' && <Footer />}
+            {device === 'PC' && <Footer />}
         </>
     );
 };

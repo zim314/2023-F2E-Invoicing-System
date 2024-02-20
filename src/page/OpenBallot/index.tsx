@@ -25,13 +25,20 @@ interface VoteShare {
 const OpenBallpt = () => {
     const [county, setCounty] = useState('選擇縣市');
     const [district, setDistrict] = useState('選擇區域');
+    const [showVoteShare, setShowVoteShare] = useState(false);
     const [mapSvgSize, setMapSvgSize] = useState({ width: 0, height: 0 });
     const [barSvgSize, setBarSvgSize] = useState({ width: 0, height: 0 });
     const [votesList, setVotesList] = useState<Votes[]>([]);
     const [voteShareList, setVoteShareList] = useState<VoteShare[]>();
 
     const mapContainerRef = useRef<HTMLDivElement>(null!);
+    const voteShareContainerRef = useRef<HTMLDivElement>(null!);
     const barGraphContainerRef = useRef<HTMLDivElement>(null!);
+
+    const handleControlPanelSwitch = () => {
+        voteShareContainerRef.current.scrollIntoView();
+        setShowVoteShare(!showVoteShare);
+    };
 
     useEffect(() => {
         const data = candidateData.map((candidate) => ({
@@ -84,8 +91,16 @@ const OpenBallpt = () => {
                 <DisplayMap geojson={countryMap} svgSize={mapSvgSize} />
             </div>
             <div className="openBallpt__controlPanelContainer">
-                <div className="controlPanel">
-                    <button className="controlPanel__expandButton">v</button>
+                <div
+                    style={{ height: showVoteShare ? '401px' : '209px' }}
+                    className="controlPanel"
+                >
+                    <button
+                        className="controlPanel__expandButton"
+                        onClick={handleControlPanelSwitch}
+                    >
+                        {showVoteShare ? 'V' : 'A'}
+                    </button>
                     <div className="controlPanel__selectBar">
                         <Select
                             optionData={counryData}
@@ -99,56 +114,79 @@ const OpenBallpt = () => {
                         />
                     </div>
 
-                    <div className="voteShare__container">
-                        {voteShareList
-                            ?.sort((a, b) => b.totalGetVotes - a.totalGetVotes)
-                            .map((voteShare) => (
-                                <div className="voteShare" key={voteShare.name}>
-                                    <img
-                                        style={{
-                                            backgroundColor: voteShare.color,
-                                        }}
-                                        src={voteShare.headShot}
-                                        alt=""
+                    <div
+                        style={{
+                            height: showVoteShare ? '333px' : '153px',
+                            overflow: showVoteShare ? 'scroll' : 'hidden',
+                            transitionProperty: 'height',
+                            transitionDuration: '0.5s',
+                        }}
+                    >
+                        {/* 百分比圖 */}
+                        <div
+                            className="voteShare__container"
+                            ref={voteShareContainerRef}
+                        >
+                            {voteShareList
+                                ?.sort(
+                                    (a, b) => b.totalGetVotes - a.totalGetVotes
+                                )
+                                .map((voteShare) => (
+                                    <div
+                                        className="voteShare"
+                                        key={voteShare.name}
+                                    >
+                                        <img
+                                            style={{
+                                                backgroundColor:
+                                                    voteShare.color,
+                                            }}
+                                            src={voteShare.headShot}
+                                            alt=""
+                                        />
+                                        <p>{voteShare.name}</p>
+                                        <p style={{ color: voteShare.color }}>
+                                            ...............................................................
+                                        </p>
+                                        <p>
+                                            {(
+                                                (voteShare.totalGetVotes /
+                                                    voteShareList.reduce(
+                                                        (accumulator, votes) =>
+                                                            (accumulator +=
+                                                                votes.totalGetVotes),
+                                                        0
+                                                    )) *
+                                                100
+                                            ).toFixed(1) + '%'}
+                                        </p>
+                                    </div>
+                                ))}
+                        </div>
+
+                        {/* 長條圖 */}
+                        <div className="barGraph" ref={barGraphContainerRef}>
+                            <div className="barGraph__title">
+                                <p>縣市</p>
+                                <p>得票佔比</p>
+                            </div>
+                            {votesList?.map((votes: Votes) => (
+                                <div
+                                    className="barGraph__row"
+                                    key={votes.county}
+                                >
+                                    <div className="barGraph__county">
+                                        {votes.county}
+                                    </div>
+                                    <RatioBar
+                                        barSize={barSvgSize}
+                                        greenPartisan={votes.yingWen}
+                                        bluePartisan={votes.guoYu}
+                                        orangePartisan={votes.chuYu}
                                     />
-                                    <p>{voteShare.name}</p>
-                                    <p style={{ color: voteShare.color }}>
-                                        ...............................................................
-                                    </p>
-                                    <p>
-                                        {(
-                                            (voteShare.totalGetVotes /
-                                                voteShareList.reduce(
-                                                    (accumulator, votes) =>
-                                                        (accumulator +=
-                                                            votes.totalGetVotes),
-                                                    0
-                                                )) *
-                                            100
-                                        ).toFixed(1) + '%'}
-                                    </p>
                                 </div>
                             ))}
-                    </div>
-
-                    <div className="barGraph" ref={barGraphContainerRef}>
-                        <div className="barGraph__title">
-                            <p>縣市</p>
-                            <p>得票佔比</p>
                         </div>
-                        {votesList?.map((votes: Votes) => (
-                            <div className="barGraph__row" key={votes.county}>
-                                <div className="barGraph__county">
-                                    {votes.county}
-                                </div>
-                                <RatioBar
-                                    barSize={barSvgSize}
-                                    greenPartisan={votes.yingWen}
-                                    bluePartisan={votes.guoYu}
-                                    orangePartisan={votes.chuYu}
-                                />
-                            </div>
-                        ))}
                     </div>
                 </div>
             </div>

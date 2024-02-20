@@ -99,7 +99,15 @@ const OpenBallpt = () => {
                         className="controlPanel__expandButton"
                         onClick={handleControlPanelSwitch}
                     >
-                        {showVoteShare ? 'V' : 'A'}
+                        <p
+                            style={{
+                                transform: `rotate(${
+                                    showVoteShare ? '0turn' : '0.5turn'
+                                })`,
+                            }}
+                        >
+                            v
+                        </p>
                     </button>
                     <div className="controlPanel__selectBar">
                         <Select

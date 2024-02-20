@@ -8,14 +8,16 @@ import './index.scss';
 
 const BasicLayout = () => {
     const [showSidebar, setShowSidebar] = useState(false);
+
     const device = useRWD();
 
     const handleSidebar = () => setShowSidebar(!showSidebar);
+    const handleCloseSidebar = () => setShowSidebar(false);
 
     return (
         <>
             {device !== 'PC' && (
-                <Sidebar show={showSidebar} closeSidebar={handleSidebar} />
+                <Sidebar show={showSidebar} closeSidebar={handleCloseSidebar} />
             )}
             <Navbar controlSidebar={handleSidebar} />
             <div className="basicLayout__container">

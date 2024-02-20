@@ -51,7 +51,7 @@ const CandidateInfo = () => {
                         <h4>學歷</h4>
                         <div className="candidateInfo__content">
                             {info.learningPortfolio.map((portfolio) => (
-                                <Li>{portfolio}</Li>
+                                <Li key={portfolio}>{portfolio}</Li>
                             ))}
                         </div>
                     </div>
@@ -59,7 +59,7 @@ const CandidateInfo = () => {
                         <h4>經歷</h4>
                         <div className="candidateInfo__content">
                             {info.experience.map((experience) => (
-                                <Li>{experience}</Li>
+                                <Li key={experience}>{experience}</Li>
                             ))}
                         </div>
                     </div>
@@ -70,6 +70,7 @@ const CandidateInfo = () => {
                                 <Link
                                     className="candidateInfo__button"
                                     to={`/CandidateInfo/${candidate.candidate}`}
+                                    key={candidate.candidate}
                                 >
                                     <img src={candidate.headShot} alt="" />
                                     <p>{candidate.chineseName}</p>

@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 const useOnClickOutSide = (
-    ref: React.MutableRefObject<any>,
+    ref: React.MutableRefObject<Node | null>,
     handler: (e: MouseEvent | TouchEvent) => void
 ) => {
     useEffect(() => {
         const listener = (e: MouseEvent | TouchEvent) => {
-            if (!ref.current || ref.current.contains(e.target)) return;
+            if (!ref.current || ref.current.contains(e.target as Node)) return;
             handler(e);
         };
 

@@ -1,6 +1,10 @@
 import './index.scss';
 
-const BurgerButton = ({ handleClick }: any) => {
+interface Props {
+    handleClick: React.MouseEventHandler;
+}
+
+const BurgerButton = ({ handleClick }: Props) => {
     return (
         <button onClick={handleClick} className="burgerButton">
             <div></div>

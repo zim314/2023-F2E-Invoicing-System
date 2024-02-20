@@ -2,7 +2,18 @@ import './index.scss';
 import { useState, useRef } from 'react';
 import useOnClickOutSide from 'hook/useOnClickOutside';
 
-const Select = ({ optionData, selectValue, updateSelect }: any) => {
+interface Props {
+    optionData: Option[];
+    selectValue: string;
+    updateSelect: (e: string) => void;
+}
+
+interface Option {
+    name: string;
+    value: string;
+}
+
+const Select = ({ optionData, selectValue, updateSelect }: Props) => {
     const [openOption, setOpenOption] = useState(false);
 
     const selectRef = useRef(null);
@@ -29,7 +40,7 @@ const Select = ({ optionData, selectValue, updateSelect }: any) => {
                     <p>▾</p>
                 </button>
                 {openOption &&
-                    optionData.map((option: any) => (
+                    optionData.map((option: Option) => (
                         <button
                             key={option.value}
                             value={option.value}

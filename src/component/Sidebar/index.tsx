@@ -1,7 +1,7 @@
 import './index.scss';
 import { useNavigate } from 'react-router-dom';
 import useOnClickOutside from '../../hook/useOnClickOutside';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 interface Props {
     show: Boolean;
@@ -11,7 +11,7 @@ interface Props {
 const Sidebar = ({ show, closeSidebar }: Props) => {
     const navigate = useNavigate();
     const sidebarRef = useRef(null!);
-    const handleJumpPage = (e: any) => {
+    const handleJumpPage = (e: React.MouseEvent<HTMLButtonElement>) => {
         closeSidebar();
         navigate(e.currentTarget.value);
     };

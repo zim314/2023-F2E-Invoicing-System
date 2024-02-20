@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import BurgerButton from 'component/BurgerButton';
 import useRWD from 'hook/useRWD';
 
-const Navbar = ({ controlSidebar }: any) => {
+interface Props {
+    controlSidebar: React.MouseEventHandler;
+}
+
+const Navbar = ({ controlSidebar }: Props) => {
     const device = useRWD();
 
     return (

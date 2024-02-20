@@ -1,7 +1,7 @@
 import './index.scss';
 
 interface Props {
-    click: any;
+    click: React.MouseEventHandler;
     shiftRight?: string;
     shiftLeft?: string;
     condidatePicture: string;

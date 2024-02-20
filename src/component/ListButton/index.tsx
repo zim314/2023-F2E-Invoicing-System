@@ -1,8 +1,7 @@
-import React from 'react';
 import './index.scss';
 
 interface Props {
-    changeState?: () => void;
+    changeState: () => void;
 }
 
 const ListButton = ({ changeState }: Props) => {

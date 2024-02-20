@@ -1,8 +1,9 @@
+import React from 'react';
 import './index.scss';
 
 interface Props {
     className?: string;
-    children: any;
+    children: React.ReactNode;
 }
 
 const LiLabal = ({ className = '', children }: Props) => (

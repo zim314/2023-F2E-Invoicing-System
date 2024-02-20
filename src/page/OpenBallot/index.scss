@@ -13,6 +13,28 @@
         padding: 13px 0px;
         flex: 1;
         min-height: 100px;
+        position: relative;
+
+        & > img {
+            width: 100px;
+            height: 64px;
+            position: absolute;
+            top: 18px;
+            left: 18px;
+        }
+
+        & > div:first-of-type {
+            position: absolute;
+            top: 98px;
+            left: 18px;
+        }
+
+        & > div:last-of-type {
+            width: 44px;
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+        }
     }   
 
     &__controlPanelContainer {
@@ -22,6 +44,26 @@
         flex-direction: column-reverse;
         position: relative;
     }
+}
+
+.mapLayout__button {
+    width: 44px;
+    height: 25px;
+    color: white;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    background-color: #0D2562;
+    border: 1px solid #0D2562;
+    border-radius: 50px;
+    &:hover{
+        color: black;
+        background-color: white;
+    }
+
+    & + & {
+        margin-top: 10px
+    }    
 }
 
 .controlPanel {

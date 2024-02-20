@@ -7,6 +7,8 @@ import { counryData, distData } from '../../component/Select/optionData';
 import * as d3 from 'd3';
 import RatioBar from '../../component/RatioBar';
 import candidateData from '../CandidateInfo/candidateData';
+import presidentialElection from '../../assets/images/map_2020.png';
+import ListButton from '../../component/ListButton';
 
 interface Votes {
     county: string;
@@ -26,6 +28,7 @@ const OpenBallpt = () => {
     const [county, setCounty] = useState('選擇縣市');
     const [district, setDistrict] = useState('選擇區域');
     const [showVoteShare, setShowVoteShare] = useState(false);
+    const [showChangeYearButton, setShowChangeYearButton] = useState(false);
     const [mapSvgSize, setMapSvgSize] = useState({ width: 0, height: 0 });
     const [barSvgSize, setBarSvgSize] = useState({ width: 0, height: 0 });
     const [votesList, setVotesList] = useState<Votes[]>([]);
@@ -88,6 +91,19 @@ const OpenBallpt = () => {
     return (
         <div className="openBallpt">
             <div className="openBallpt__mapContainer" ref={mapContainerRef}>
+                <img src={presidentialElection} alt="" />
+                <div>{showChangeYearButton && <ListButton />}</div>
+                <div>
+                    <button
+                        className="mapLayout__button"
+                        onClick={() =>
+                            setShowChangeYearButton(!showChangeYearButton)
+                        }
+                    >
+                        年份
+                    </button>
+                    <button className="mapLayout__button">說明</button>
+                </div>
                 <DisplayMap geojson={countryMap} svgSize={mapSvgSize} />
             </div>
             <div className="openBallpt__controlPanelContainer">

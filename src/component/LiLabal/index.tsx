@@ -2,7 +2,7 @@ import './index.scss';
 
 interface Props {
     className?: string;
-    children: string;
+    children: any;
 }
 
 const LiLabal = ({ className = '', children }: Props) => (

@@ -6,7 +6,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: absolute;
+    transition-property: right;
+    transition-duration: 0.3s;
    
     & h5, h6, p {
         display: block;
@@ -30,13 +32,13 @@
     }
 
     &__wrapper {
-        z-index: -1;
         position: fixed;
         height: 100%;
         width: 100%;
-        background-color: rgba(5, 11, 27, 0.60);
         display: flex;
         justify-content: end;
+        transition-property: background-color;
+        transition-duration: 0.2s;
     }
 
     &__closeButton {

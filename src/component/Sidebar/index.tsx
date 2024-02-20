@@ -1,11 +1,25 @@
 import './index.scss';
 import { Link } from 'react-router-dom';
 
-const Sidebar = () => {
+interface Props {
+    show: Boolean;
+    closeSidebar: () => void;
+}
+
+const Sidebar = ({ show, closeSidebar }: Props) => {
     return (
-        <div className="sidebar__wrapper">
-            <div className="sidebar">
-                <button className="sidebar__closeButton" />
+        <div
+            style={{
+                zIndex: show ? '3' : '-1',
+                backgroundColor: `rgba(5, 11, 27,${show ? '0.60' : '0'})`,
+            }}
+            className="sidebar__wrapper"
+        >
+            <div style={{ right: show ? '0px' : '-269px' }} className="sidebar">
+                <button
+                    onClick={closeSidebar}
+                    className="sidebar__closeButton"
+                />
                 <div className="sidebar__blockLine" />
                 <Link to="/openballpt">
                     <h5>即時開票地圖</h5>

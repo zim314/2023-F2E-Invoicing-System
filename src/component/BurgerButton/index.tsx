@@ -1,8 +1,8 @@
 import './index.scss';
 
-const BurgerButton = () => {
+const BurgerButton = ({ handleClick }: any) => {
     return (
-        <button className="burgerButton">
+        <button onClick={handleClick} className="burgerButton">
             <div></div>
             <div></div>
             <div></div>

@@ -1,0 +1,97 @@
+%point {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    border-radius: 99px;
+}
+
+.explainPopup {
+    background-color: white;
+    width: 343px;
+    padding: 32px 28px;
+    border-radius: 12px;
+    position: relative;
+
+    & > button {
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 18px;
+        right: 16px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: white;
+
+        &::before, &::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 20px;
+            background-color: #848383;
+            position: relative;
+        }
+
+        &::before {
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+        }
+    }
+
+    & > h5 {
+        font-size: 16px;
+        color: #0D2562;
+        font-family: "Noto Sans TC";
+        font-weight: 500;
+        margin-bottom: 14px;
+    }
+
+    & > p {
+        line-height: 20px;
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+
+    & > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__wrapper {
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        background-color: rgb(0,0,0,0.6);
+    }
+
+    &__partisanInfo {
+        display: flex;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    &__point-- {
+        &blue {
+            @extend %point;
+            background-color: #8CB5DB;
+        }
+        &green {
+            @extend %point;
+            background-color: #749C74;
+        }
+        &orange {
+            @extend %point;
+            background-color: #FFB086;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import './index.scss';
 import countryMap from '../../assets/map/countryMap.json';
 import DisplayMap from '../../component/DisplayMap';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useContext } from 'react';
 import Select from '../../component/Select';
 import { counryData, distData } from '../../component/Select/optionData';
 import * as d3 from 'd3';
@@ -9,6 +9,7 @@ import RatioBar from '../../component/RatioBar';
 import candidateData from '../CandidateInfo/candidateData';
 import presidentialElection from '../../assets/images/map_2020.png';
 import ListButton from '../../component/ListButton';
+import { explainPopupContext } from '../../layout/BasicLayout/index';
 
 interface Votes {
     county: string;
@@ -28,12 +29,13 @@ const OpenBallpt = () => {
     const [county, setCounty] = useState('選擇縣市');
     const [district, setDistrict] = useState('選擇區域');
     const [showVoteShare, setShowVoteShare] = useState(false);
-    const [showChangeYearButton, setShowChangeYearButton] = useState(false);
+    const [showChangeYearButton, setShowChangeYearButton] = useState(true);
     const [mapSvgSize, setMapSvgSize] = useState({ width: 0, height: 0 });
     const [barSvgSize, setBarSvgSize] = useState({ width: 0, height: 0 });
     const [votesList, setVotesList] = useState<Votes[]>([]);
     const [voteShareList, setVoteShareList] = useState<VoteShare[]>();
 
+    const showExplainPopup = useContext(explainPopupContext);
     const mapContainerRef = useRef<HTMLDivElement>(null!);
     const voteShareContainerRef = useRef<HTMLDivElement>(null!);
     const barGraphContainerRef = useRef<HTMLDivElement>(null!);
@@ -92,7 +94,11 @@ const OpenBallpt = () => {
         <div className="openBallpt">
             <div className="openBallpt__mapContainer" ref={mapContainerRef}>
                 <img src={presidentialElection} alt="" />
-                <div>{showChangeYearButton && <ListButton />}</div>
+                <div>
+                    {showChangeYearButton && (
+                        <ListButton changeState={() => {}} />
+                    )}
+                </div>
                 <div>
                     <button
                         className="mapLayout__button"
@@ -102,7 +108,12 @@ const OpenBallpt = () => {
                     >
                         年份
                     </button>
-                    <button className="mapLayout__button">說明</button>
+                    <button
+                        className="mapLayout__button"
+                        onClick={showExplainPopup}
+                    >
+                        說明
+                    </button>
                 </div>
                 <DisplayMap geojson={countryMap} svgSize={mapSvgSize} />
             </div>
@@ -169,7 +180,11 @@ const OpenBallpt = () => {
                                             alt=""
                                         />
                                         <p>{voteShare.name}</p>
-                                        <p style={{ color: voteShare.color }}>
+                                        <p
+                                            style={{
+                                                color: voteShare.color,
+                                            }}
+                                        >
                                             ...............................................................
                                         </p>
                                         <p>

@@ -1,7 +1,8 @@
+import React from 'react';
 import './index.scss';
 
 interface Props {
-    changeState: () => void;
+    changeState: React.MouseEventHandler;
 }
 
 const ListButton = ({ changeState }: Props) => {

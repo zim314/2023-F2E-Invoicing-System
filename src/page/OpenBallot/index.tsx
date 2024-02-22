@@ -10,6 +10,7 @@ import candidateData from '../CandidateInfo/candidateData';
 import presidentialElection from '../../assets/images/map_2020.png';
 import ListButton from '../../component/ListButton';
 import { explainPopupContext } from '../../layout/BasicLayout/index';
+import useRWD from '../../hook/useRWD';
 
 interface Votes {
     county: string;
@@ -35,6 +36,11 @@ const OpenBallpt = () => {
     const [votesList, setVotesList] = useState<Votes[]>([]);
     const [voteShareList, setVoteShareList] = useState<VoteShare[]>();
 
+    const device = useRWD();
+    const controlPanelHeight =
+        device === 'PC' ? '100%' : showVoteShare ? '401px' : '209px';
+    const voteShareHeight =
+        device === 'PC' ? '153px' : showVoteShare ? '333px' : '153px';
     const showExplainPopup = useContext(explainPopupContext);
     const mapContainerRef = useRef<HTMLDivElement>(null!);
     const voteShareContainerRef = useRef<HTMLDivElement>(null!);
@@ -93,49 +99,59 @@ const OpenBallpt = () => {
     return (
         <div className="openBallpt">
             <div className="openBallpt__mapContainer" ref={mapContainerRef}>
-                <img src={presidentialElection} alt="" />
-                <div>
-                    {showChangeYearButton && (
-                        <ListButton changeState={() => {}} />
-                    )}
-                </div>
-                <div>
-                    <button
-                        className="mapLayout__button"
-                        onClick={() =>
-                            setShowChangeYearButton(!showChangeYearButton)
-                        }
-                    >
-                        年份
-                    </button>
-                    <button
-                        className="mapLayout__button"
-                        onClick={showExplainPopup}
-                    >
-                        說明
-                    </button>
-                </div>
+                {device !== 'PC' && (
+                    <>
+                        <img src={presidentialElection} alt="" />
+                        <div>
+                            {showChangeYearButton && (
+                                <ListButton changeState={() => {}} />
+                            )}
+                        </div>
+                        <div>
+                            <button
+                                className="mapLayout__button"
+                                onClick={() =>
+                                    setShowChangeYearButton(
+                                        !showChangeYearButton
+                                    )
+                                }
+                            >
+                                年份
+                            </button>
+                            <button
+                                className="mapLayout__button"
+                                onClick={showExplainPopup}
+                            >
+                                說明
+                            </button>
+                        </div>
+                    </>
+                )}
+
                 <DisplayMap geojson={countryMap} svgSize={mapSvgSize} />
             </div>
             <div className="openBallpt__controlPanelContainer">
                 <div
-                    style={{ height: showVoteShare ? '401px' : '209px' }}
+                    style={{ height: controlPanelHeight }}
                     className="controlPanel"
                 >
-                    <button
-                        className="controlPanel__expandButton"
-                        onClick={handleControlPanelSwitch}
-                    >
-                        <p
-                            style={{
-                                transform: `rotate(${
-                                    showVoteShare ? '0turn' : '0.5turn'
-                                })`,
-                            }}
+                    {device !== 'PC' && (
+                        <button
+                            className="controlPanel__expandButton"
+                            onClick={handleControlPanelSwitch}
                         >
-                            v
-                        </p>
-                    </button>
+                            <p
+                                style={{
+                                    transform: `rotate(${
+                                        showVoteShare ? '0turn' : '0.5turn'
+                                    })`,
+                                }}
+                            >
+                                v
+                            </p>
+                        </button>
+                    )}
+
                     <div className="controlPanel__selectBar">
                         <Select
                             optionData={counryData}
@@ -151,13 +167,12 @@ const OpenBallpt = () => {
 
                     <div
                         style={{
-                            height: showVoteShare ? '333px' : '153px',
+                            height: voteShareHeight,
                             overflow: showVoteShare ? 'scroll' : 'hidden',
                             transitionProperty: 'height',
                             transitionDuration: '0.5s',
                         }}
                     >
-                        {/* 百分比圖 */}
                         <div
                             className="voteShare__container"
                             ref={voteShareContainerRef}
@@ -185,7 +200,7 @@ const OpenBallpt = () => {
                                                 color: voteShare.color,
                                             }}
                                         >
-                                            ...............................................................
+                                            .............................................................................................................................................................................................................................
                                         </p>
                                         <p>
                                             {(
@@ -203,8 +218,44 @@ const OpenBallpt = () => {
                                 ))}
                         </div>
 
-                        {/* 長條圖 */}
-                        <div className="barGraph" ref={barGraphContainerRef}>
+                        {device !== 'PC' && (
+                            <div
+                                className="barGraph"
+                                ref={
+                                    device !== 'PC'
+                                        ? barGraphContainerRef
+                                        : null
+                                }
+                            >
+                                <div className="barGraph__title">
+                                    <p>縣市</p>
+                                    <p>得票佔比</p>
+                                </div>
+                                {votesList?.map((votes: Votes) => (
+                                    <div
+                                        className="barGraph__row"
+                                        key={votes.county}
+                                    >
+                                        <div className="barGraph__county">
+                                            {votes.county}
+                                        </div>
+                                        <RatioBar
+                                            barSize={barSvgSize}
+                                            greenPartisan={votes.yingWen}
+                                            bluePartisan={votes.guoYu}
+                                            orangePartisan={votes.chuYu}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {device === 'PC' && (
+                        <div
+                            className="barGraph"
+                            ref={device === 'PC' ? barGraphContainerRef : null}
+                        >
                             <div className="barGraph__title">
                                 <p>縣市</p>
                                 <p>得票佔比</p>
@@ -226,7 +277,7 @@ const OpenBallpt = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </div>

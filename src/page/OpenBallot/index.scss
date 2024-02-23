@@ -17,6 +17,11 @@
     @media screen and (min-width: 1024px) {
         flex-direction: row-reverse;
         padding: 40px;
+        background-image: url(../../assets/images/OpenBallot_background.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
     }
 
     &__mapContainer {

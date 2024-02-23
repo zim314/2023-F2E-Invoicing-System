@@ -8,7 +8,7 @@ import * as d3 from 'd3';
 import RatioBar from '../../component/RatioBar';
 import candidateData from '../CandidateInfo/candidateData';
 import presidentialElection from '../../assets/images/map_2020.png';
-import presidentialElectionPC from '../../assets/images/map_2020--PC.png';
+import presidentialElectionPC from '../../assets/images/map_2020-PC.png';
 import ListButton from '../../component/ListButton';
 import { explainPopupContext } from '../../layout/BasicLayout/index';
 import useRWD from '../../hook/useRWD';
@@ -105,7 +105,6 @@ const OpenBallpt = () => {
                     <div className="explainArea__listButtonContainer">
                         <ListButton changeState={() => {}} />
                     </div>
-
                     <div className="explainArea__partisanContainer">
                         <div className="explainArea__partisan">
                             <div className="explainArea__point--blue" />
@@ -120,7 +119,6 @@ const OpenBallpt = () => {
                             <div>橘喵黨</div>
                         </div>
                     </div>
-
                     <button
                         className="explainArea__button"
                         onClick={showExplainPopup}
@@ -158,7 +156,6 @@ const OpenBallpt = () => {
                         </div>
                     </>
                 )}
-
                 <DisplayMap geojson={countryMap} svgSize={mapSvgSize} />
             </div>
             <div className="openBallpt__controlPanelContainer">
@@ -182,7 +179,6 @@ const OpenBallpt = () => {
                             </p>
                         </button>
                     )}
-
                     <div className="controlPanel__selectBar">
                         <Select
                             optionData={counryData}
@@ -195,7 +191,6 @@ const OpenBallpt = () => {
                             updateSelect={setDistrict}
                         />
                     </div>
-
                     <div
                         style={{
                             height: voteShareHeight,
@@ -248,7 +243,6 @@ const OpenBallpt = () => {
                                     </div>
                                 ))}
                         </div>
-
                         {device !== 'PC' && (
                             <div
                                 className="barGraph"
@@ -281,7 +275,6 @@ const OpenBallpt = () => {
                             </div>
                         )}
                     </div>
-
                     {device === 'PC' && (
                         <div
                             className="barGraph"

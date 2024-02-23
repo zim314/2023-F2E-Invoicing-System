@@ -66,6 +66,13 @@ const OpenBallpt = () => {
         setVoteShareList(data);
     }, [votesList]);
 
+    //找機會優化掉這個effect 他哺應該存在
+    useEffect(() => {
+        const { width: mapWidth, height: mapHeight } =
+            mapContainerRef.current.getBoundingClientRect();
+        setMapSvgSize({ width: mapWidth, height: mapHeight - 26 });
+    }, [mapSvgSize.width]);
+
     useEffect(() => {
         (async () => {
             const votes = await d3
@@ -84,12 +91,11 @@ const OpenBallpt = () => {
         const updateSvgSize = () => {
             const { width: mapWidth, height: mapHeight } =
                 mapContainerRef.current.getBoundingClientRect();
+
             const { width: barWidth } =
                 barGraphContainerRef.current.getBoundingClientRect();
 
-            //地圖上下留白各13px 13+13=26
             setMapSvgSize({ width: mapWidth, height: mapHeight - 26 });
-            //bar要扣掉pidding跟county的width 20+20+18=58
             setBarSvgSize({ width: barWidth - 108, height: 18 });
         };
         updateSvgSize();

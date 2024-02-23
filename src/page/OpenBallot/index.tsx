@@ -66,12 +66,12 @@ const OpenBallpt = () => {
         setVoteShareList(data);
     }, [votesList]);
 
-    //找機會優化掉這個effect 他哺應該存在
+    //想辦法優化這一段
     useEffect(() => {
         const { width: mapWidth, height: mapHeight } =
             mapContainerRef.current.getBoundingClientRect();
         setMapSvgSize({ width: mapWidth, height: mapHeight - 26 });
-    }, [mapSvgSize.width]);
+    }, [mapContainerRef.current]);
 
     useEffect(() => {
         (async () => {
@@ -91,7 +91,6 @@ const OpenBallpt = () => {
         const updateSvgSize = () => {
             const { width: mapWidth, height: mapHeight } =
                 mapContainerRef.current.getBoundingClientRect();
-
             const { width: barWidth } =
                 barGraphContainerRef.current.getBoundingClientRect();
 

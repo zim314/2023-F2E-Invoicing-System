@@ -3,6 +3,13 @@
     border-radius: 6px 6px 0px 0px;
 }
 
+%explainAreaPoint {
+    width: 20px;
+    height: 20px;
+    border-radius: 99px;
+    margin-right: 12px;
+}
+
 .openBallpt {
     height: 100%;
     display: flex;
@@ -17,6 +24,7 @@
         flex: 1;
         min-height: 100px;
         position: relative;
+        overflow: hidden;
 
         & > img {
             width: 100px;
@@ -54,8 +62,77 @@
             border-radius: 14px;
             flex-direction: column;
             background-color: white;
-            border: 1px solid gray;
+            box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+            margin-right: 20px;
         }
+    }
+}
+
+.explainArea {
+    position: relative;
+    margin-left: 20px;
+
+    & > img {
+        width: 144px;
+        height: 104px;
+    }
+
+    &__listButtonContainer {
+        position: absolute;
+        top: 151px;
+        right: 95px; 
+    }
+
+    &__partisan {
+        display: flex;
+        font-size: 14px; 
+        line-height: 20px;
+
+        & + & {
+            margin-top: 20px;
+        }
+
+        &Container {
+            position: absolute;
+            right: 10px;
+            bottom: 47px;
+        }
+    }
+
+    &__point-- {
+        &blue {
+            @extend %explainAreaPoint;
+            background-color: #8CB5DB;
+        } 
+
+        &green {
+            @extend %explainAreaPoint;
+            background-color:  #749C74; 
+        }
+
+        &orange {
+            @extend %explainAreaPoint;
+            background-color: #FFB086; 
+        }
+    }
+
+    &__button {
+        width: 44px;
+        height: 25px;
+        color: white;
+        font-size: 14px;
+        line-height: 14px;
+        text-align: center;
+        background-color: #0D2562;
+        border: 1px solid #0D2562;
+        border-radius: 50px;
+        &:hover{
+            color: black;
+            background-color: white;
+        }
+        position: absolute;
+        right: 10px;
+        bottom: 0px;
     }
 }
 

@@ -8,6 +8,7 @@ import * as d3 from 'd3';
 import RatioBar from '../../component/RatioBar';
 import candidateData from '../CandidateInfo/candidateData';
 import presidentialElection from '../../assets/images/map_2020.png';
+import presidentialElectionPC from '../../assets/images/map_2020--PC.png';
 import ListButton from '../../component/ListButton';
 import { explainPopupContext } from '../../layout/BasicLayout/index';
 import useRWD from '../../hook/useRWD';
@@ -98,6 +99,36 @@ const OpenBallpt = () => {
 
     return (
         <div className="openBallpt">
+            {device === 'PC' && (
+                <div className="explainArea">
+                    <img src={presidentialElectionPC} alt="" />
+                    <div className="explainArea__listButtonContainer">
+                        <ListButton changeState={() => {}} />
+                    </div>
+
+                    <div className="explainArea__partisanContainer">
+                        <div className="explainArea__partisan">
+                            <div className="explainArea__point--blue" />
+                            <div>藍汪黨</div>
+                        </div>
+                        <div className="explainArea__partisan">
+                            <div className="explainArea__point--green" />
+                            <div>綠喵黨</div>
+                        </div>
+                        <div className="explainArea__partisan">
+                            <div className="explainArea__point--orange" />
+                            <div>橘喵黨</div>
+                        </div>
+                    </div>
+
+                    <button
+                        className="explainArea__button"
+                        onClick={showExplainPopup}
+                    >
+                        說明
+                    </button>
+                </div>
+            )}
             <div className="openBallpt__mapContainer" ref={mapContainerRef}>
                 {device !== 'PC' && (
                     <>
